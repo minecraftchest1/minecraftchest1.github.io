@@ -1,6 +1,8 @@
 # Remote Resource Markup Language
 ## XML document specifaction for requesting and receving resources from a remote service.
 
+The following is the layout of the document.
+
 ```
 Root Tag: Payload   id:
   Tag: header
