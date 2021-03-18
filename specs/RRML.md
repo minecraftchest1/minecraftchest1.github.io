@@ -4,7 +4,7 @@
 The following is the layout of the document.
 
 ```
-Root Tag: Payload   id:
+Root Tag: Packet   id:
   Tag: header
     Tag:checksum   md5:  sha1:   sha256:   sha512:
     Tag: sender    ipv4:  ipv6:   hostname;   fqdn:
@@ -14,3 +14,8 @@ Root Tag: Payload   id:
   Tag: body
 Tag: payload
 ```
+
+Tag | Parmater | Description | Flags
+-----|-----|-----|-----|
+Packet||May be repeated. ID's must be unique.|Yes
+Packet|ID|Identifies the packet. Created by hashing the header and body.|Yes
