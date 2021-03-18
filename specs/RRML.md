@@ -35,5 +35,10 @@ Destination|IPv4|IPv4 address of Destination|Yes*
 Destination|IPv6|IPv6 address of Destination|Yes*
 Destination|Hostname|Hostname of Destination|No
 Destination|FQDN|Fully Qualified Domain Address of Destination|No
+Proxyhost||Used to identify any proxies that have passed on the packet. May repeat several times in the header.|Yes
+Proxyhost|IPv4|IPv4 address of Proxyhost|Yes*
+Proxyhost|IPv6|IPv6 address of Proxyhost|Yes*
+Proxyhost|Hostname|Hostname of Proxyhost|No
+Proxyhost|FQDN|Fully Qualified Domain Address of Proxyhost|No
 
 *Either IPv4 or IPv6 address must be included.
