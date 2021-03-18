@@ -25,3 +25,10 @@ Checksum|MD5|MD5 checksum of the body.|No
 Checksum|SHA1|SHA1 checksum of the body.|No
 Checksum|SHA256|SHA256/SHA2 checksum of the body.|No
 Checksum|SHA512|SHA512/SHA3 checksum of the body.|No
+Sender||Used to identify the sender of ther packet.|Yes
+Sender|IPv4|IPv4 address of sender|Yes*
+Sender|IPv6|IPv6 address of sender|Yes*
+Sender|Hostname|Hostname of sender|No
+Sender|FQDN|Fully Qualified Domain Address of sender|No
+
+*Either IPv4 or IPv6 address must be included.
