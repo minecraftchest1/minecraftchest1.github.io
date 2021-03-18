@@ -40,5 +40,10 @@ Proxyhost|IPv4|IPv4 address of Proxyhost|Yes*
 Proxyhost|IPv6|IPv6 address of Proxyhost|Yes*
 Proxyhost|Hostname|Hostname of Proxyhost|No
 Proxyhost|FQDN|Fully Qualified Domain Address of Proxyhost|No
+Authencation||Used to identify and authorize the sender. Either username and password (basic auth), or bearer token may be used.|No
+Authencation|Username|Username of the sender of the packet.|No
+Authencation|Password|Password of the user that sent the packet.|No
+Authencation|Bearer|Authencation token created by other authencation systems.|No
+
 
 *Either IPv4 or IPv6 address must be included.
