@@ -30,5 +30,10 @@ Sender|IPv4|IPv4 address of sender|Yes*
 Sender|IPv6|IPv6 address of sender|Yes*
 Sender|Hostname|Hostname of sender|No
 Sender|FQDN|Fully Qualified Domain Address of sender|No
+Destination||Used to identify the Destination of ther packet.|Yes
+Destination|IPv4|IPv4 address of Destination|Yes*
+Destination|IPv6|IPv6 address of Destination|Yes*
+Destination|Hostname|Hostname of Destination|No
+Destination|FQDN|Fully Qualified Domain Address of Destination|No
 
 *Either IPv4 or IPv6 address must be included.
