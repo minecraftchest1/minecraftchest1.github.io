@@ -49,4 +49,11 @@ Body||Contains data being sent. Not to be used as root tag.|Yes
 
 *Either IPv4 or IPv6 address must be included.
 
-Discussion at https://minecraftchest1.wordpress.com/2021/03/17/remote-resource-markup-language/
+<script src="https://utteranc.es/client.js"
+        repo="minecraftchest1/minecraftchest1.github.io"
+        issue-term="pathname"
+        label="discussion"
+        theme="preferred-color-scheme"
+        crossorigin="anonymous"
+        async>
+</script>
