@@ -44,6 +44,7 @@ Authencation||Used to identify and authorize the sender. Either username and pas
 Authencation|Username|Username of the sender of the packet.|No
 Authencation|Password|Password of the user that sent the packet.|No
 Authencation|Bearer|Authencation token created by other authencation systems.|No
+Body||Contains data being sent. Not to be used as root tag.|Yes
 
 
 *Either IPv4 or IPv6 address must be included.
