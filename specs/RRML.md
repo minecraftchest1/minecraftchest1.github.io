@@ -19,3 +19,4 @@ Tag | Parmater | Description | Flags
 -----|-----|-----|-----|
 Packet||May be repeated. ID's must be unique.|Yes
 Packet|ID|Identifies the packet. Created by hashing the header and body.|Yes
+Header||May only exist once in each packet.|Yes
