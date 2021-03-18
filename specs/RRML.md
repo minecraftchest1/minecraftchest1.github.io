@@ -20,7 +20,7 @@ Tag | Parmater | Description | Flags
 Packet||May be repeated. ID's must be unique.|Yes
 Packet|ID|Identifies the packet. Created by hashing the header and body.|Yes
 Header||May only exist once in each packet.|Yes
-Checksum||Contians hashes of the body used to verify the intergrity of the data sent. At least one hash must be included if used.|Recomended
+Checksum||Contains hashes of the body used to verify the integrity of the data sent. At least one hash must be included if used.|Recomended
 Checksum|MD5|MD5 checksum of the body.|No
 Checksum|SHA1|SHA1 checksum of the body.|No
 Checksum|SHA256|SHA256/SHA2 checksum of the body.|No
