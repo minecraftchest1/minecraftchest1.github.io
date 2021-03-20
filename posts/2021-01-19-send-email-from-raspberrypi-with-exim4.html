@@ -1,0 +1,112 @@
+---
+layout: post
+title: Send email from RaspberryPi (with exim4)
+date: 2021-01-19 10:39:06.000000000 -06:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories: []
+tags:
+- exim
+- note
+- raspberrypi
+meta:
+  post_id: '171'
+  is_reblog: '1'
+  _oembed_364e040c833fec4da20c5b78a2adda2d: "{{unknown}}"
+  blog_id: '44717925'
+  timeline_notification: '1611074347'
+  _oembed_bff1808fc70395c61ac3c00a2e7dcdb3: "{{unknown}}"
+  reblog_snapshot: "O:8:\"stdClass\":7:{s:5:\"title\";s:40:\"Send email from RaspberryPi
+    (with exim4)\";s:4:\"type\";s:4:\"post\";s:9:\"mime_type\";s:0:\"\";s:6:\"format\";b:0;s:12:\"modified_gmt\";s:19:\"2019-03-11
+    03:37:12\";s:9:\"permalink\";s:83:\"https://raspinotes.wordpress.com/2019/03/10/send-email-from-raspberrypi-with-exim4/\";s:7:\"content\";s:6492:\"<div
+    class=\"reblogged-content\">\n\nFollowed directions here:\n\nhttps://www.sbprojects.net/projects/raspberrypi/exim4.php\n\n \n<h2>Getting
+    A Message Transfer Agent</h2>\nBefore your Pi can send emails it needs a message
+    transfer agent (MTA). I have two flavours for you. The first one is exim4, the
+    other one is SSMTP. The choice is yours. Needless to say, you will only need one
+    of the two MTAs.\nThanks to the Debian packaging system this is easily done by
+    typing one of the following commands.\n<div class=\"row\">\n<div class=\"col-sm-12
+    col-md-6\">\n<h3>Exim4</h3>\n<pre>sudo apt-get install exim4\n</pre>\nAfter installing
+    exim4 we need to configure it. This is done by the following command:\n<pre>sudo
+    dpkg-reconfigure exim4-config\n</pre>\nNow you need to answer some questions.
+    Don't worry I'll give you the answers to those questions.\n<ul><li>The first screen
+    asks you what type of mail server you need. Select the second option: \"mail sent
+    by smarthost; received via SMTP or fetchmail\"</li>\n\t<li>The next question asks
+    for the system mail name: Set to same as hostname (raspberrypi)</li>\n\t<li>Now
+    it asks you what IP addresses should be allowed to use the server. Leave as is
+    (127.0.0.1 ; ::1)</li>\n\t<li>Other destinations for which mail is accepted: raspberrypi</li>\n\t<li>Machines
+    to relay mail for: Leave blank.</li>\n\t<li>IP address or host name of outgoing
+    smarthost: Replace by: smtp.gmail.com::587</li>\n\t<li>Hide local mail name in
+    outgoing mail: Select: No</li>\n\t<li>Keep number of DNS-queries minimal: Select:
+    No</li>\n\t<li>Delivery method for local mail: Select: \"Maildir format in home
+    directory\"</li>\n\t<li>Split configuration into small files: Select: No</li>\n\t<li>Root
+    and postmaster mail recipient: Enter: pi</li>\n</ul>\nAfter answering all these
+    questions exim4 will restart and we're halfway home.\n\nNow you'll have to enter
+    your account details. As root, edit the fileÂ <span class=\"inline-code\">/etc/exim4/passwd.client</span>Â and
+    add the next three lines at the end of the file.\n<pre>gmail-smtp.l.google.com:YOU@gmail.com:PASSWORD\n*.google.com:YOU@gmail.com:PASSWORD\nsmtp.gmail.com:YOU@gmail.com:PASSWORD\n</pre>\nNeedless
+    to say that you'll have to changeÂ <span class=\"inline-code\">YOU</span>Â to
+    your Gmail login name, andÂ <span class=\"inline-code\">PASSWORD</span>Â to your
+    password on all three lines. After that you only have to update and restart exim4
+    and you're done! The next two lines will do that for you:\n<pre>sudo update-exim4.conf\nsudo
+    service exim4 restart\n</pre>\n</div>\n<div class=\"col-sm-12 col-md-6\">\n<h3>SSMTP</h3>\n<pre>sudo
+    apt-get install ssmtp mailutils mpack\n</pre>\nNow edit the fileÂ <span class=\"inline-code\">/etc/ssmtp/ssmtp.conf</span>Â as
+    root and add the next lines. Please note that some of the lines already exist
+    and may need to be changed. Others don't exist yet and need to be added to the
+    end of the file.\n<pre>mailhub=smtp.gmail.com:587\nhostname=ENTER YOUR RPI'S HOST
+    NAME HERE\nAuthUser=YOU@gmail.com\nAuthPass=PASSWORD\nuseSTARTTLS=YES\n</pre>\nAgain
+    you'll have to replaceÂ <span class=\"inline-code\">YOU</span>Â with your gmail
+    login name andÂ <span class=\"inline-code\">PASSWORD</span>with your (application
+    specific) gmail password.\nAfter this you're done. You don't even have to restart
+    the SSMTP server (in fact, there is none).\n\n</div>\n</div>\n<h2>The Final Touches</h2>\nSome
+    processes, for instance crontabs, can send mails to root or other system users.
+    If you don't want to miss any of them you can setup some aliases. You can do that
+    by editing the fileÂ <span class=\"inline-code\">/etc/aliases</span>. Here's what
+    mine looks like:\n<pre># /etc/aliases\nmailer-daemon: postmaster\npostmaster:
+    root\nnobody: root\nhostmaster: root\nusenet: root\nnews: root\nwebmaster: root\nwww:
+    root\nftp: root\nabuse: root\nnoc: root\nsecurity: root\nroot: pi\npi: youremail@example.com\n</pre>\nIt
+    may be necessary to run the next command to make the changes in aliases active:\n<pre
+    class=\"listing\">sudo newaliases\n</pre>\nThis tells the system to redirect all
+    mail to root, while mail to root is redirected to the user pi, while mail to user
+    pi is finally redirected to my own mail account. This way all system mail will
+    eventually be sent to my own mail account, no matter to what local user the mail
+    was originally sent.\n\nIf you are like me, you will probably have more than one
+    Raspberry Pi mailing you some status information. And unless you use different
+    mail accounts for all your RPis it becomes harder and harder to find out which
+    one is mailing you. The next command will setup a new full name (pi @ domotics)
+    for the user name pi, with which you can idintify the source of the e-mail.\n<pre>sudo
+    chfn -f \"pi @ domotics\" pi\n</pre>\nPS: The aliases don't appear to work with
+    the SSMTP setup. Nothing I tried seemed to work. Although SSMTP is easier to setup,
+    I recommend you to use the Exim4 approach to get a more complete mail experience.\nBut
+    if it is simplicity you're after, feel free to use SSMTP.\n<h2>A Better Mail User
+    Agent</h2>\nBy default the program bsd-mailx is installed on the Raspberry Pi
+    as the mail user agent. Every time you invoke theÂ <span class=\"inline-code\">mail</span>Â command,
+    bsd-mailx is executed. There's one thing that I don't like about this program
+    and that it won't allow you to send attachments with your mails.\nSo let's remove
+    that program and install a better alternative:\n<pre class=\"listing\">sudo apt-get
+    install heirloom-mailx\nsudo rm /etc/alternatives/mail\nsudo ln -s /usr/bin/heirloom-mailx
+    /etc/alternatives/mail\n</pre>\nAfter that you can simply do something likeÂ <span
+    class=\"inline-code\">mail -a attachment.file -s \"Subject line\" to@example.com</span>Â to
+    send an email with a file attached to it.\n<h2>Testing</h2>\nTo test your outgoing
+    mail simply execute the next command:\n<pre>mail -s \"This is the subject line\"
+    root@localhost\n</pre>\nThen type the body of the message, this is only a test
+    so anything will do. When you're done typing the body type a dot (.) at the beginning
+    of a new line and hit Enter. The mail should now be sent to root, which is redirected
+    to pi, which is redirected to your normal email address.\nYou can also send a
+    mail directly to your own email address if you want to, however that would be
+    skipping testing the redirections.\n\nBelow you see two other ways of sending
+    mail from your RPi. Both methods will send the file body.txt as message body.\n<pre>mail
+    -s \"This is the subject line\" someone@example.com &lt; body.txt\ncat body.txt
+    | mail -s \"This is the subject line\" someone@example.com</pre></div>\";}"
+  _oembed_623d60daee02194d1cd58b009d5376ea: "{{unknown}}"
+  _last_editor_used_jetpack: block-editor
+  _oembed_602a3bc8731fcec4b70257187e549ad7: "{{unknown}}"
+author:
+  login: minecraftchest1
+  email: wyattcjackson2006+wordpress@outlook.com
+  display_name: minecraftchest1
+  first_name: ''
+  last_name: ''
+permalink: "/2021/01/19/send-email-from-raspberrypi-with-exim4/"
+---

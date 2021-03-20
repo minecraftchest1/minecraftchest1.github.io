@@ -1,0 +1,53 @@
+---
+layout: post
+title: dd Mayhem - How I Overwrote my Linux Install
+date: 2020-12-24 10:00:09.000000000 -06:00
+type: post
+parent_id: '0'
+published: true
+password: ''
+status: publish
+categories:
+- Home
+- Linux War Stories
+tags:
+- bash
+- dd
+- linux
+meta:
+  _rest_api_published: '1'
+  _rest_api_client_id: '2697'
+  _publicize_job_id: '52610711233'
+  timeline_notification: '1608825752'
+  _last_editor_used_jetpack: block-editor
+author:
+  login: minecraftchest1
+  email: wyattcjackson2006+wordpress@outlook.com
+  display_name: minecraftchest1
+  first_name: ''
+  last_name: ''
+permalink: "/2020/12/24/dd-mayhem/"
+excerpt: 'If you have used the linux command line, you may have used dd to write disk
+  images to disk. And if you have used dd, you may have heard the joke that dd means
+  disk destroyer. You may find the joke funny, at least until you have set of to the
+  wrong block device. Here is the story of how I learned what dd can do.
+
+'
+---
+<p><!-- wp:paragraph --></p>
+<p>If you have used the linux command line, you may have used <code>dd</code> to write disk images to disk. And if you have used dd, you may have heard the joke that <code>dd</code> means disk destroyer. You may find the joke funny, at least until you have set of to the wrong block device. Here is the story of how I learned what <code>dd</code> can do.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:paragraph --></p>
+<p>The day was December 23, 2020. Just two days before Christmas. I had previously compiled a PR for ReactOS to test it, copied it to my Raspberry Pi 4b, and configured it to share the .iso file as a mass storage device over the USB port. After rebooting and choosing USB as my boot device, it loaded the drivers and went to a black screen which didn't supprise me.</p>
+<p><!-- /wp:paragraph --></p>
+<p><!-- wp:video {"guid":"rcUqc0a5","id":109,"className":"wp-block-embed is-type-video is-provider-videopress wp-embed-aspect-9-16 wp-has-aspect-ratio"} --></p>
+<figure class="wp-block-embed is-type-video is-provider-videopress wp-embed-aspect-9-16 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper">
+https://videopress.com/v/rcUqc0a5?preloadContent=metadata
+</div>
+<figcaption>Booting ReactOS from my Raspberry Pi 4 in mass storage mode.</figcaption>
+</figure>
+<p><!-- /wp:video --></p>
+<p><!-- wp:paragraph --></p>
+<p>After trying a few times, I decided to try a more common method, use a physical USB drive. That is where my mistake came in. I verified that <code>/dev/sdb</code> was my USB drive with <code>fdisk -l</code>, formatting it with <code>parted</code>, I was ready to write my .iso file to my drive with <code>dd</code>. I ran the command <code>sudo dd if=bootcd.iso of=/dev/sda</code>. And there goes the first couple megabytes of data on my hard drive. That's right, I overwrote the boot sector, boot partition, and who knows what else on my hard drive. Woopse. Look for part 2 where I will attempt to recover the data on my drive.</p>
+<p><!-- /wp:paragraph --></p>
