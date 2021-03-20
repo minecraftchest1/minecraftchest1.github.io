@@ -53,7 +53,7 @@ Body||Contains data being sent. Not to be used as root tag.|Yes
         repo="minecraftchest1/minecraftchest1.github.io"
         issue-term="pathname"
         label="discussion"
-        theme="preferred-color-scheme"
+        theme="github-dark"
         crossorigin="anonymous"
         async>
 </script>
