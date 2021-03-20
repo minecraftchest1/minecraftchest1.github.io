@@ -12,7 +12,6 @@ Root Tag: Packet   id:
     Tag: proxyhist  ipv4:  ipv6:   hostname;   fqdn:
     Tag: authencation   user:   password:   bearer:
   Tag: body
-Tag: payload
 ```
 
 Tag | Parmater | Description | Flags
