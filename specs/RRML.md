@@ -14,7 +14,7 @@ Root Tag: Packet   id:
   Tag: body
 ```
 
-Tag | Parmater | Description | Flags
+Tag | Parmater | Description | Required
 -----|-----|-----|-----|
 Packet||May be repeated. ID's must be unique.|Yes
 Packet|ID|Identifies the packet. Created by hashing the header and body.|Yes
