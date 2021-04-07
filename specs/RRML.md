@@ -45,8 +45,10 @@ Authencation|Username|Username of the sender of the packet.|No
 Authencation|Password|Password of the user that sent the packet.|No
 Authencation|Bearer|Authencation token created by other authencation systems.|No
 Request||Additional data about the request|Yes
-Request|Yes|URI of the resource being requested|Yes
+Request|Yes|URI of the resource being requested|Yes**
 Body||Contains data being sent. Not to be used as root tag.|Yes
 
 
 *Either IPv4 or IPv6 address must be included.
+
+**Mirrors that of http.
