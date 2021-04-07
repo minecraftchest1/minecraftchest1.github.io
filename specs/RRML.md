@@ -6,11 +6,12 @@ The following is the layout of the document.
 ```
 Root Tag: Packet   id:
   Tag: header
-    Tag:checksum   md5:  sha1:   sha256:   sha512:
+    Tag: checksum   md5:  sha1:   sha256:   sha512:
     Tag: sender    ipv4:  ipv6:   hostname;   fqdn:
     Tag: destination  ipv4:  ipv6:   hostname;   fqdn:
     Tag: proxyhist  ipv4:  ipv6:   hostname;   fqdn:
     Tag: authencation   user:   password:   bearer:
+    Tag: request  uri:
   Tag: body
 ```
 
@@ -43,6 +44,8 @@ Authencation||Used to identify and authorize the sender. Either username and pas
 Authencation|Username|Username of the sender of the packet.|No
 Authencation|Password|Password of the user that sent the packet.|No
 Authencation|Bearer|Authencation token created by other authencation systems.|No
+Request||Additional data about the request|Yes
+Request|Yes|URI of the resource being requested|Yes
 Body||Contains data being sent. Not to be used as root tag.|Yes
 
 
