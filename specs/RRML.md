@@ -52,3 +52,7 @@ Body||Contains data being sent. Not to be used as root tag.|Yes
 *Either IPv4 or IPv6 address must be included.
 
 **Mirrors that of http.
+
+## Changelog
+
+4/7/2021 - Add Request URI to RRML Spec.
